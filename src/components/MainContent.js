@@ -18,7 +18,6 @@ const useStyles = makeStyles(theme => ({
     },
     fullWidth: {
         width: `calc(100% - ${drawerWidth}px)`,
-        marginLeft: drawerWidth,
     },
 }));
 
