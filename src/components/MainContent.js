@@ -2,6 +2,8 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { Typography } from '@material-ui/core';
+import TextField from '@material-ui/core/TextField';
+import Search from '../Search.js';
 
 const drawerWidth = 240;
 
@@ -19,6 +21,12 @@ const useStyles = makeStyles(theme => ({
     fullWidth: {
         width: `calc(100% - ${drawerWidth}px)`,
     },
+    root: {
+        '& >*': {
+            margin: theme.spacing(1),
+            width: '25ch'
+        },
+    },
 }));
 
 function MainContent() {
@@ -32,8 +40,9 @@ function MainContent() {
             </div>
             <div className={classes.content}>
                 <Typography paragraph>
-                    This is placeholder text
+                    Enter a Pokemon name below to get some basic info about it. Make Sure to enter the name in lower case!
                 </Typography>
+                <Search />
             </div>
         </main>
     );

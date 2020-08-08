@@ -8,8 +8,7 @@ import ListItemText from '@material-ui/core/ListItemText';
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import ExitToApp from '@material-ui/icons/ExitToApp';
 import { makeStyles } from '@material-ui/core/styles';
-import { Avatar } from '@material-ui/core';
-import { Grid } from '@material-ui/core';
+import { Avatar, Grid } from '@material-ui/core';
 
 const drawerWidth = 240;
 
@@ -45,7 +44,7 @@ function SideMenu() {
         >
             <Grid container justify='center' alignItems='center'>
                 <Avatar
-                    src='https://steamcdn-a.akamaihd.net/steamcommunity/public/images/avatars/00/00b74473078095669d0c099400dc1420364fba59_full.jpg'
+                    src='https://i.imgur.com/3HTClaB.png'
                     className={classes.bigAvatar}
                 />
             </Grid>

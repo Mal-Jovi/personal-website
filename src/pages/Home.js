@@ -5,6 +5,7 @@ import TopMenu from '../components/TopMenu';
 import SideMenu from '../components/SideMenu';
 import MainContent from '../components/MainContent';
 import Footer from '../components/Footer';
+import GetData from '../GetData.js'
 
 
 const useStyles = makeStyles(theme => ({
@@ -18,6 +19,7 @@ function Home() {
 
     return (
         <div className={classes.root}>
+            <GetData />
             <TopMenu />
             <SideMenu />
             <MainContent />
