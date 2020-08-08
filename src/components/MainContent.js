@@ -2,10 +2,7 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { Typography } from '@material-ui/core';
-<<<<<<< Updated upstream
-=======
 import Search from './Search';          //Good example of how to reference a component from the same folder
->>>>>>> Stashed changes
 
 const drawerWidth = 240;
 
