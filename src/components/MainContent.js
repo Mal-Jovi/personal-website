@@ -3,7 +3,7 @@ import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { Typography } from '@material-ui/core';
 import TextField from '@material-ui/core/TextField';
-import Search from '../Search.js';
+import Search from './Search';          //Good example of how to reference a component from the same folder
 
 const drawerWidth = 240;
 
@@ -36,7 +36,7 @@ function MainContent() {
         <main className={classes.fullWidth}>
             <div className={classes.toolbar} />
             <div className={classes.title}>
-                <Typography variant='h6'>Title</Typography>
+                <Typography variant='h6'>Pokedex Search</Typography>
             </div>
             <div className={classes.content}>
                 <Typography paragraph>

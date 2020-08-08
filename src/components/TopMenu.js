@@ -30,7 +30,7 @@ function TopMenu() {
             <Toolbar>
                 <MenuItem>
                     <Typography variant='h6' className={classes.title}>
-                        Home
+                        Pokedex
                     </Typography>
                 </MenuItem>
                 <MenuItem>
