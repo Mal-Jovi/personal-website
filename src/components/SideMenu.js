@@ -45,7 +45,7 @@ function SideMenu() {
         >
             <Grid container justify='center' alignItems='center'>
                 <Avatar
-                    src='https://steamcdn-a.akamaihd.net/steamcommunity/public/images/avatars/00/00b74473078095669d0c099400dc1420364fba59_full.jpg'
+                    src='https://i.imgur.com/3HTClaB.png'
                     className={classes.bigAvatar}
                 />
             </Grid>

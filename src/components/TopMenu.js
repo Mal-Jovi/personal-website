@@ -12,6 +12,7 @@ const useStyles = makeStyles(theme => ({
     appBar: {
         width: `calc(100% - ${drawerWidth}px)`,
         marginLeft: drawerWidth,
+        background: '#ff0000',
     },
     menuButton: {
         marginRight: theme.spacing(2),
@@ -29,7 +30,7 @@ function TopMenu() {
             <Toolbar>
                 <MenuItem>
                     <Typography variant='h6' className={classes.title}>
-                        Home
+                        Pokedex
                     </Typography>
                 </MenuItem>
                 <MenuItem>

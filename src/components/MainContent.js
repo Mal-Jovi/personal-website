@@ -29,12 +29,13 @@ function MainContent() {
         <main className={classes.fullWidth}>
             <div className={classes.toolbar} />
             <div className={classes.title}>
-                <Typography variant='h6'>Title</Typography>
+                <Typography variant='h6'>Pokedex Search</Typography>
             </div>
             <div className={classes.content}>
                 <Typography paragraph>
-                    This is placeholder text
+                    Enter a Pokemon name below to get some basic info about it. Make Sure to enter the name in lower case!
                 </Typography>
+                <Search />
             </div>
         </main>
     );

@@ -12,13 +12,16 @@ const useStyles = makeStyles(theme => ({
         bottom: 0,
         width: `calc(100% - ${drawerWidth}px)`,
         marginLeft: drawerWidth,
+        background: '#b2beb5',
     },
     menuButton: {
         marginRight: theme.spacing(2),
+        background: '#b2beb5',
     },
     title: {
         flexGrow: 1,
         marginLeft: 10,
+        background: '#b2beb5',
     },
     footer: {
         marginLeft: 10,
@@ -32,7 +35,7 @@ function Footer() {
     return (
         <AppBar position='fixed' className={classes.appBar}>
             <Typography variant='h6' className={classes.footer}>
-                Made by Jovi Sidhu
+                @ Copyright 2020
             </Typography>
         </AppBar>
     );
