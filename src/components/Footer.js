@@ -32,7 +32,7 @@ function Footer() {
     return (
         <AppBar position='fixed' className={classes.appBar}>
             <Typography variant='h6' className={classes.footer}>
-                @ Copyright 2020
+                Made by Jovi Sidhu
             </Typography>
         </AppBar>
     );
