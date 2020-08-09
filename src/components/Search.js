@@ -3,7 +3,7 @@ import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import { Typography } from '@material-ui/core';
-import axios from 'axios';
+//import axios from 'axios';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -13,39 +13,6 @@ const useStyles = makeStyles((theme) => ({
         },
     },
 }));
-
-class Search extends React.Component {
-
-    constructor(props) {
-        super(props);
-        this.state = {
-            pokemonName: ''
-        };
-
-        this.handleEvent = this.handleEvent.bind(this);
-    }
-
-    handleEvent(data) {
-        this.setState({
-            pokemonName: data
-        });
-    }
-
-
-    render() {
-        return (
-            <div>
-                <SearchBar onSubmit={this.handleEvent} />
-                <br>
-                </br>
-                <Typography paragraph >
-                    Pokemon Name: {this.state.pokemonName}
-                </Typography>
-                <FetchData name={this.state.pokemonName}/>
-            </div>
-        );
-    }
-}
 
 class SearchBar extends React.Component {
 
@@ -125,6 +92,39 @@ class FetchData extends React.Component {
                 <Typography paragraph>
                     Found Data For {this.state.posts[0]}
                 </Typography>    
+            </div>
+        );
+    }
+}
+
+class Search extends React.Component {
+
+    constructor(props) {
+        super(props);
+        this.state = {
+            pokemonName: ''
+        };
+
+        this.handleEvent = this.handleEvent.bind(this);
+    }
+
+    handleEvent(data) {
+        this.setState({
+            pokemonName: data
+        });
+    }
+
+
+    render() {
+        return (
+            <div>
+                <SearchBar onSubmit={this.handleEvent} />
+                <br>
+                </br>
+                <Typography paragraph >
+                    Pokemon Name: {this.state.pokemonName}
+                </Typography>
+                <FetchData name={this.state.pokemonName} />
             </div>
         );
     }
