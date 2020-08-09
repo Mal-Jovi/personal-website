@@ -3,6 +3,7 @@ import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import { Typography } from '@material-ui/core';
+import axios from 'axios';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -12,10 +13,6 @@ const useStyles = makeStyles((theme) => ({
         },
     },
 }));
-
-
-
-
 
 class Search extends React.Component {
 
@@ -44,6 +41,7 @@ class Search extends React.Component {
                 <Typography paragraph >
                     Pokemon Name: {this.state.pokemonName}
                 </Typography>
+                <FetchData name={this.state.pokemonName}/>
             </div>
         );
     }
@@ -98,8 +96,44 @@ class SearchBar extends React.Component {
 
 }
 
-function fetchData() {
+class FetchData extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            posts: [],
+        }
 
+        this.handleSearch = this.handleSearch.bind(this);
+    }
+
+    componentDidMount() {
+        //Axios requests go here
+        //This method runs after the componenet has been updated to the DOM, and is a good place to 
+        //register API calls.
+
+    }
+
+    handleSearch(props) {
+        const givenName = this.props.name;
+        const apiUrl = 'https://pokeapi.co/api/v2/pokemon/'.concat(givenName);
+        console.log(apiUrl);
+    }
+
+    render() {
+        return (
+            <div>
+                <Typography paragraph>
+                    Found Data For {this.state.posts[0]}
+                </Typography>    
+            </div>
+        );
+    }
 }
+
+
+
+
+
+
 
 export default Search;
