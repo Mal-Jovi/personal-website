@@ -7,9 +7,11 @@ import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import ExitToApp from '@material-ui/icons/ExitToApp';
+import GitHubIcon from '@material-ui/icons/GitHub';
 import { makeStyles } from '@material-ui/core/styles';
 import { Avatar } from '@material-ui/core';
 import { Grid } from '@material-ui/core';
+
 
 const drawerWidth = 240;
 
@@ -50,14 +52,18 @@ function SideMenu() {
                 />
             </Grid>
             <List>
-                {['Profile', 'Sign Out'].map((text, index) => (
-                    <ListItem button key={text}>
-                        <ListItemIcon>
-                            {index === 0 ? <AccountCircle /> : < ExitToApp />}
-                        </ListItemIcon>
-                        <ListItemText primary={text} />
-                    </ListItem>
-                ))}
+                <ListItem button key={'GitHub Repo'} onClick={() => window.open("https://github.com/Mal-Jovi/personal-website", " _blank")}>
+                    <ListItemIcon>
+                        <GitHubIcon />
+                    </ListItemIcon>
+                    <ListItemText primary={'Pokedex Github'} />
+                </ListItem>
+                <ListItem button key={'Made By Jovi'}>
+                    <ListItemIcon>
+                        < AccountCircle />
+                    </ListItemIcon>
+                    <ListItemText primary={'Made By Jovi'} />
+                </ListItem>
             </List>
         </Drawer>
     );
