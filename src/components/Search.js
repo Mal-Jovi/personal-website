@@ -3,7 +3,7 @@ import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import { Typography } from '@material-ui/core';
-//import axios from 'axios';
+import axios from 'axios';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -63,38 +63,54 @@ class SearchBar extends React.Component {
 
 }
 
-class FetchData extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            posts: [],
-        }
+var apiUrl = "https://pokeapi.co/api/v2/pokemon/";
+var input = document.querySelector(".pokemon-input");
+var pokemonName = document.querySelector(".pokemon-name");
+var pokemonImage = document.querySelector(".pokemon-image");
 
-        this.handleSearch = this.handleSearch.bind(this);
+function getPokemonData(props) {
+    axios.get(apiUrl + props.name)
+        .then(function (response) {
+            pokemonName.innerHTML = response.data.forms[0].namel
+            pokemonImage.src = response.data.sprites.front_default;
+        })
+        .catch(function (error) {
+            pokemonName.innerHTML = "(An error has occured.)";
+            pokemonImage.src = "";
+        });
+}
+
+function FetchData(props){
+
+    let currentName = '';
+    let apiUrl = '';
+
+    let responseArray = [];
+
+    if (currentName !== props.name) {
+        currentName = props.name;
+        apiUrl = 'https://pokeapi.co/api/v2/pokemon/'.concat(currentName);
+        axios({ method: 'get', url: `${apiUrl}` })
+            .then((response) => {
+                responseArray = response.data;
+                const responseData = {
+                    id: response.data.id,
+                    name: response.data.name,
+                };
+                props.onChangeData(responseArray);
+                console.log(responseArray);
+            }, (error) => {
+                console.log(error);
+            });
     }
 
-    componentDidMount() {
-        //Axios requests go here
-        //This method runs after the componenet has been updated to the DOM, and is a good place to 
-        //register API calls.
-
-    }
-
-    handleSearch(props) {
-        const givenName = this.props.name;
-        const apiUrl = 'https://pokeapi.co/api/v2/pokemon/'.concat(givenName);
-        console.log(apiUrl);
-    }
-
-    render() {
-        return (
-            <div>
-                <Typography paragraph>
-                    Found Data For {this.state.posts[0]}
-                </Typography>    
-            </div>
-        );
-    }
+    return (
+        <div>
+            <Typography paragraph>
+                Found Data For {}
+            </Typography>    
+        </div>
+    );
 }
 
 class Search extends React.Component {
@@ -102,29 +118,42 @@ class Search extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            pokemonName: ''
+            pokemonName: '',
+            id: '',
+            pokemonData: [],
         };
 
-        this.handleEvent = this.handleEvent.bind(this);
+        this.handleName = this.handleName.bind(this);
     }
 
-    handleEvent(data) {
+    handleName(data) {
         this.setState({
             pokemonName: data
         });
     }
 
+    componentDidMount() {
+        let apiUrl = 'https://pokeapi.co/api/v2/pokemon/'.concat(this.state.pokemonName);
+        axios({ method: 'get', url: `${apiUrl}` })
+            .then((response) => {
+                this.setState({
+                    pokemonData: response.data,
+                });
+            }, (error) => {
+                console.log(error);
+            });
+    }
 
     render() {
         return (
             <div>
-                <SearchBar onSubmit={this.handleEvent} />
+                <SearchBar onSubmit={this.handleName} />
                 <br>
                 </br>
                 <Typography paragraph >
-                    Pokemon Name: {this.state.pokemonName}
+                    {console.log(this.state.pokemonData)}
+                    Pokemon Name: {this.state.pokemonData.name}
                 </Typography>
-                <FetchData name={this.state.pokemonName} />
             </div>
         );
     }
