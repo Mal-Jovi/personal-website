@@ -30,6 +30,7 @@ class SearchBar extends React.Component {
         event.preventDefault();
 
         this.props.onSubmit(this.state.searchedWord);
+        this.props.onChange(this.state.searchedWord);
 
         this.setState({
             searchedWord: ''
@@ -63,56 +64,6 @@ class SearchBar extends React.Component {
 
 }
 
-var apiUrl = "https://pokeapi.co/api/v2/pokemon/";
-var input = document.querySelector(".pokemon-input");
-var pokemonName = document.querySelector(".pokemon-name");
-var pokemonImage = document.querySelector(".pokemon-image");
-
-function getPokemonData(props) {
-    axios.get(apiUrl + props.name)
-        .then(function (response) {
-            pokemonName.innerHTML = response.data.forms[0].namel
-            pokemonImage.src = response.data.sprites.front_default;
-        })
-        .catch(function (error) {
-            pokemonName.innerHTML = "(An error has occured.)";
-            pokemonImage.src = "";
-        });
-}
-
-function FetchData(props){
-
-    let currentName = '';
-    let apiUrl = '';
-
-    let responseArray = [];
-
-    if (currentName !== props.name) {
-        currentName = props.name;
-        apiUrl = 'https://pokeapi.co/api/v2/pokemon/'.concat(currentName);
-        axios({ method: 'get', url: `${apiUrl}` })
-            .then((response) => {
-                responseArray = response.data;
-                const responseData = {
-                    id: response.data.id,
-                    name: response.data.name,
-                };
-                props.onChangeData(responseArray);
-                console.log(responseArray);
-            }, (error) => {
-                console.log(error);
-            });
-    }
-
-    return (
-        <div>
-            <Typography paragraph>
-                Found Data For {}
-            </Typography>    
-        </div>
-    );
-}
-
 class Search extends React.Component {
 
     constructor(props) {
@@ -120,10 +71,13 @@ class Search extends React.Component {
         this.state = {
             pokemonName: '',
             id: '',
+            image: '',
             pokemonData: [],
         };
 
         this.handleName = this.handleName.bind(this);
+        this.handleData = this.handleData.bind(this);
+        this.renderResult = this.renderResult.bind(this);
     }
 
     handleName(data) {
@@ -132,28 +86,42 @@ class Search extends React.Component {
         });
     }
 
-    componentDidMount() {
-        let apiUrl = 'https://pokeapi.co/api/v2/pokemon/'.concat(this.state.pokemonName);
+    handleData(event) {
+
+        let apiUrl = 'https://pokeapi.co/api/v2/pokemon/'.concat(event);
         axios({ method: 'get', url: `${apiUrl}` })
             .then((response) => {
                 this.setState({
                     pokemonData: response.data,
+                    id: response.data.id,
+                    image: response.data.sprites.front_default,
                 });
             }, (error) => {
                 console.log(error);
             });
     }
 
-    render() {
-        return (
-            <div>
-                <SearchBar onSubmit={this.handleName} />
-                <br>
-                </br>
+    renderResult() {
+        if (this.state.pokemonName !== '') {
+            return (
                 <Typography paragraph >
                     {console.log(this.state.pokemonData)}
                     Pokemon Name: {this.state.pokemonData.name}
+                    <br>
+                    </br>
+                    <img src={this.state.image} alt="Pokemon Image"/>
                 </Typography>
+            );
+        }
+    }
+
+    render() {
+        return (
+            <div>
+                <SearchBar onSubmit={this.handleName} onChange={this.handleData}/>
+                <br>
+                </br>
+                {this.renderResult()}
             </div>
         );
     }
