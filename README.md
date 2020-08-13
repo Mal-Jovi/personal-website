@@ -7,4 +7,4 @@ Once a name is searched, various details from the API query are then formatted a
 
 This React webapp is currently being hosted using netlify, you can try it out with the link below:
 
-(https://pensive-pasteur-a099b4.netlify.app)
+(jovi-pokedex.netlify.app)
