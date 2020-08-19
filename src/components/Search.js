@@ -4,12 +4,13 @@ import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import { Typography } from '@material-ui/core';
 import axios from 'axios';
+import Card from './Card'
 
 const useStyles = makeStyles((theme) => ({
     root: {
         '& >*': {
             margin: theme.spacing(1),
-            width: '25ch'
+            width: '25ch',
         },
     },
 }));
@@ -55,13 +56,9 @@ class SearchBar extends React.Component {
                         value={this.state.searchedWord}
                         onChange={this.handleChange} />
                 </ form>
-                <h4>
-                    {this.state.searchedWord}
-                </h4>
             </div>
         );
     }
-
 }
 
 class Search extends React.Component {
@@ -77,7 +74,6 @@ class Search extends React.Component {
 
         this.handleName = this.handleName.bind(this);
         this.handleData = this.handleData.bind(this);
-        this.renderResult = this.renderResult.bind(this);
     }
 
     handleName(data) {
@@ -87,8 +83,7 @@ class Search extends React.Component {
     }
 
     handleData(event) {
-
-        let apiUrl = 'https://pokeapi.co/api/v2/pokemon/'.concat(event);
+        let apiUrl = 'https://pokeapi.co/api/v2/pokemon/'.concat(event.toLowerCase());
         axios({ method: 'get', url: `${apiUrl}` })
             .then((response) => {
                 this.setState({
@@ -101,7 +96,8 @@ class Search extends React.Component {
             });
     }
 
-    renderResult() {
+    //Made Redundant by Card.js
+    /*renderResult() {
         if (this.state.pokemonName !== '') {
             return (
                 <Typography paragraph >
@@ -109,11 +105,11 @@ class Search extends React.Component {
                     Pokemon Name: {this.state.pokemonData.name}
                     <br>
                     </br>
-                    <img src={this.state.image} alt="Pokemon Image"/>
+                    <img src={this.state.image} />
                 </Typography>
-            );
+            ); 
         }
-    }
+    }*/
 
     render() {
         return (
@@ -121,7 +117,9 @@ class Search extends React.Component {
                 <SearchBar onSubmit={this.handleName} onChange={this.handleData}/>
                 <br>
                 </br>
-                {this.renderResult()}
+
+                {/*make sure there is a response such that pokemonData is not just an empty array, as to avoid any 'undefined' access errors in Card.js*/}
+                {this.state.pokemonData.length !== 0 ? <Card givenData={this.state.pokemonData} /> : console.log("hello")}
             </div>
         );
     }

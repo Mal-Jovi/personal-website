@@ -33,7 +33,7 @@ function MainContent() {
             </div>
             <div className={classes.content}>
                 <Typography paragraph>
-                    Enter a Pokemon name below to get some basic info about it. Make Sure to enter the name in lower case!
+                    Enter a Pokemon name below to get some basic info about it.
                 </Typography>
                 <Search />
             </div>

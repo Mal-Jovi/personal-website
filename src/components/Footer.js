@@ -12,7 +12,7 @@ const useStyles = makeStyles(theme => ({
         bottom: 0,
         width: `calc(100% - ${drawerWidth}px)`,
         marginLeft: drawerWidth,
-        background: '#b2beb5',
+        background: '#d3d3d3',
     },
     menuButton: {
         marginRight: theme.spacing(2),
